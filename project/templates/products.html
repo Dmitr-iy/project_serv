@@ -9,25 +9,24 @@ Products
 {% endblock title %}
 
 {% block content %}
-   <h1>Все товары</h1>
+   <h1>All products</h1>
    <form action="" method="get">
-       {# Переменная, которую мы передали через контекст, может сгенерировать нам форму с полями #}
        {{ filterset.form.as_p }}
-       {# Добавим кнопку отправки данных формы #}
-       <input type="submit" value="Найти" />
+       <input type="submit" value="To find" />
    </form>
 
-   <h3>{% current_time '%b %d %Y' %}</h3>
-   <h3> {{ next_sale|default_if_none:"Чуть позже сообщим о распродаже!" }} </h3>
+   <h3>{% current_time '%d-%m-%Y' %}</h3>
+   <h3>{% current_time '%H:%M' %}</h3>
+   <h3> {{ next_sale|default_if_none:"Sale is coming soon!" }} </h3>
    <hr>
    {% if products %}
        <table>
            <tr>
-               <td>Название</td>
-               <td>Описание</td>
-               <td>Категория</td>
-               <td>Цена</td>
-               <td>Количество</td>
+               <td>Name</td>
+               <td>Description</td>
+               <td>Category</td>
+               <td>Price</td>
+               <td>Quantity</td>
            </tr>
            {% for product in products %}
            <tr>
@@ -41,7 +40,7 @@ Products
 
        </table>
    {% else %}
-       <h2>Товаров нет!</h2>
+       <h2>There are no products!</h2>
    {% endif %}
 
    {% if page_obj.has_previous %}
@@ -53,7 +52,6 @@ Products
    {% endif %}
    {{ page_obj.number }}
 
-   {# Информация о следующих страницах #}
    {% if page_obj.has_next %}
        <a href="?{% url_replace page=page_obj.next_page_number %}">{{ page_obj.next_page_number }}</a>
        {% if paginator.num_pages != page_obj.next_page_number %}

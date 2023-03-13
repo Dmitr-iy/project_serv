@@ -26,7 +26,17 @@ class Product(models.Model):
     def __str__(self):
         return f'{self.name.title()}: {self.description[:20]}'
 
+class Material(models.Model):
+    objects = None
+    name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
+
+class ProductMaterial(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    material = models.ForeignKey(Material, on_delete=models.CASCADE)
 
 class Category(models.Model):
     # названия категорий тоже не должны повторяться
