@@ -1,7 +1,6 @@
-from django.db import models
 from django.core.validators import MinValueValidator
-
-
+from django.db import models
+from django.urls import reverse
 
 class Product(models.Model):
     objects = None
@@ -25,6 +24,9 @@ class Product(models.Model):
 
     def __str__(self):
         return f'{self.name.title()}: {self.description[:20]}'
+
+    def get_absolute_url(self):
+        return reverse('product_detail', args=[str(self.id)])
 
 class Material(models.Model):
     objects = None

@@ -9,7 +9,7 @@ Products
 {% endblock title %}
 
 {% block content %}
-   <h1>All products</h1>
+   <h1>All Goods</h1>
    <form action="" method="get">
        {{ filterset.form.as_p }}
        <input type="submit" value="To find" />
@@ -40,7 +40,7 @@ Products
 
        </table>
    {% else %}
-       <h2>There are no products!</h2>
+       <h2>There are no goods!</h2>
    {% endif %}
 
    {% if page_obj.has_previous %}
